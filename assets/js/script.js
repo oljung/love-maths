@@ -29,6 +29,8 @@ function runGame(gameType){
         displayAdditionQuestion(num1, num2);
     } else if(gameType === 'multiply'){
         displayMultiplyQuestion(num1, num2);
+    } else if(gameType === 'subtract'){
+        displaySubtractionQuestion(num1, num2);
     } else {
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}. Aborting!`;
@@ -63,6 +65,8 @@ function calculateCorrectAnswer(){
         return [operand1 + operand2, 'addition'];
     } else if(operator === 'x'){
         return [operand1 * operand2, 'multiply'];
+    } else if(operator === '-'){
+        return [operand1 - operand2, 'subtract'];
     } else {
         alert(`Unimplemented operator: ${operator}`);
         throw `Unimplemented operator: ${operator}. Aborting!`;
@@ -91,8 +95,10 @@ function displayAdditionQuestion(operand1, operand2){
     document.getElementById('operator').textContent = '+';
 }
 
-function displaySubtractionQuestion(){
-
+function displaySubtractionQuestion(operand1, operand2){
+    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
+    document.getElementById('operand2').textContent = operand1 > operand2 ? operand2 : operand1;
+    document.getElementById('operator').textContent = '-';
 }
 
 function displayMultiplyQuestion(operand1, operand2){
